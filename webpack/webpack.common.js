@@ -1,13 +1,8 @@
 const path = require("path");
 
-// TODO: webpack5でstorybookをビルドすると、以下のプラグインとの依存関係でエラーが出る
-// 問題が修正されたら、以下をインストールする
-// https://github.com/storybookjs/storybook/issues/9216
-// "html-webpack-plugin": "^4.5.0",
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const htmlWebpackPlugin = new HtmlWebPackPlugin({
   template: "./src/index.html",
-  favicon: "./src/images/favicon/favicon.ico",
 });
 
 module.exports = {
@@ -18,11 +13,7 @@ module.exports = {
   },
   resolve: {
     extensions: [".js", ".ts", ".tsx"],
-    alias: {
-      "@rtab/components": path.resolve(__dirname, "src/components"),
-      "@rtab/images": path.resolve(__dirname, "src/images"),
-      "@rtab/utils": path.resolve(__dirname, "src/utils"),
-    },
+    alias: {},
   },
   watchOptions: {
     poll: true,
@@ -54,19 +45,8 @@ module.exports = {
             "@babel/preset-react",
             "@babel/preset-typescript",
           ],
-          plugins: [
-            "@babel/plugin-proposal-class-properties",
-            "babel-plugin-styled-components",
-          ],
+          plugins: ["@babel/plugin-proposal-class-properties"],
         },
-      },
-      {
-        test: /\.(png|jpe?g|gif)$/i,
-        use: [
-          {
-            loader: "file-loader",
-          },
-        ],
       },
     ],
   },

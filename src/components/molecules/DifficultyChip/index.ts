@@ -1,1 +1,0 @@
-export { DifficultyChip } from "./DifficultyChip";
